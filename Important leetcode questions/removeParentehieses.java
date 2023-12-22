@@ -1,0 +1,34 @@
+public class removeParentehieses {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+
+        String input = "(()())(())";
+        String result = solution.removeOuterParentheses(input);
+
+        System.out.println("Original String: " + input);
+        System.out.println("Resulting String: " + result);
+    }
+}
+
+class Solution {
+    public String removeOuterParentheses(String s) {
+        int len = s.length();
+        if (len <= 2)
+            return "";
+        char[] c = s.toCharArray();
+        StringBuilder newString = new StringBuilder();
+        int open = 1;
+        for (int i = 1; i < len; i++) {
+            if (c[i] == '(') {
+                open++;
+                if (open > 1)
+                    newString.append('(');
+            } else {
+                if (open > 1)
+                    newString.append(')');
+                open--;
+            }
+        }
+        return newString.toString();
+    }
+}
