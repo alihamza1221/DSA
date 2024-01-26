@@ -150,39 +150,6 @@ public class graph {
 
     }
 
-    // ballman's ford algo
-
-    static void ballmanFordAlgo(List<Edge>[] graph, int src, int V) {
-        System.out.println("\n--ballmanFordAlgo--");
-        int[] dist = new int[V];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-
-        for (int i = 0; i < V - 1; i++) {
-            for (int u = 0; u < V; u++) {
-                for (Edge e : graph[u]) {
-                    int v = e.dest;
-                    if (dist[u] != Integer.MAX_VALUE && dist[u] + e.weight < dist[v]) {
-                        dist[v] = dist[u] + e.weight;
-                    }
-                }
-            }
-        }
-        for (int u = 0; u < V; u++) {
-            for (Edge e : graph[u]) {
-                int v = e.dest;
-                if (dist[u] != Integer.MAX_VALUE && dist[u] + e.weight < dist[v]) {
-                    System.err.println("Graph contains negative weight cycle");
-                    return;
-                }
-            }
-        }
-
-        for (int i : dist) {
-            System.out.print(i + " ");
-        }
-    }
-
     // prims algo for minimum spanning trees
 
     static int primsAlgo(ArrayList<Edge>[] graph, boolean[] vis, int V) {
