@@ -150,38 +150,6 @@ public class graph {
 
     }
 
-    static int[] dijkstarsAlgorithem(int src, List<Edge>[] graph, boolean[] vis, int V) {
-        System.out.println("--dijkstarsAlgorithem--");
-        PriorityQueue<Pair> q = new PriorityQueue<>();
-        q.offer(new Pair(src, 0));
-        int[] dist = new int[V];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-
-        while (!q.isEmpty()) {
-            Pair cur = q.poll();
-            if (!vis[cur.src]) {
-                vis[cur.src] = true;
-                for (int i = 0; i < graph[cur.src].size(); i++) {
-                    Edge e = graph[cur.src].get(i);
-                    if (vis[e.dest])
-                        continue; // if already visited then continue (if not then it will give TLE)
-                    int u = e.src;
-                    int v = e.dest;
-                    if (dist[u] + e.weight < dist[v]) {
-                        dist[v] = dist[u] + e.weight; // relaxation
-                        q.offer(new Pair(v, dist[v]));
-                    }
-
-                }
-            }
-        }
-        for (int i : dist) {
-            System.out.print(i + " ");
-        }
-        return dist;
-    }
-
     // ballman's ford algo
 
     static void ballmanFordAlgo(List<Edge>[] graph, int src, int V) {
