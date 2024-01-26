@@ -28,3 +28,7 @@ static void ballmanFordAlgo(List<Edge>[] graph, int src, int V) {
             System.out.print(i + " ");
         }
     }
+
+
+//time : O(V * E )  in case  E = V ^ 2 than O ( V ^ 3 ) 
+//space : O ( V ^ 2) + O(V) // where O (V) is due to distance matrix
