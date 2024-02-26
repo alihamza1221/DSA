@@ -149,30 +149,4 @@ public class graph {
         }
 
     }
-
-    // prims algo for minimum spanning trees
-
-    static int primsAlgo(ArrayList<Edge>[] graph, boolean[] vis, int V) {
-        System.out.println("\n--primsAlgo--");
-        PriorityQueue<Pair> q = new PriorityQueue<>();// not mst
-        q.offer(new Pair(0, 0));
-        int cost = 0;
-        Arrays.fill(vis, false);
-        while (!q.isEmpty()) {
-            Pair curr = q.poll();
-            if (!vis[curr.src]) {
-                cost += curr.dist;
-                vis[curr.src] = true;
-                for (int i = 0; i < graph[curr.src].size(); i++) {
-                    Edge e = graph[curr.src].get(i);
-                    if (!vis[e.dest]) {
-                        q.offer(new Pair(e.dest, e.weight));
-                    }
-                }
-            }
-        }
-        System.out.println(cost);
-        return cost;
-    }
-
 }
